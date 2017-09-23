@@ -5,6 +5,7 @@ import {
 } from 'react-router-dom';
 import axios from 'axios';
 import {BASE_API_URL} from '../lib/util';
+import Header from '../header/header';
 
 
 
@@ -48,7 +49,7 @@ class Product extends Component{
 
 
 
-const Product_thumbnail =(props)=>{
+const Product_thumbnail = (props) => {
     const Products = props.data.map((res, index)=>{
         return(
             <div className="col-sm-3" key={index}>
@@ -70,13 +71,15 @@ const Product_thumbnail =(props)=>{
         
     
     return(
-        <div className="container">
-            <div className="row">
-                {Products}
+        <div>
+            <Header className="App-main" />
+            <div className="container">
+                <div className="row">
+                    {Products}
+                </div>
+                <br/><br/><br/><br/><br/>
             </div>
-            <br/><br/><br/><br/><br/>
         </div>
-
     )
 }
 

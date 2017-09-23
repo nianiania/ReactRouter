@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './login.css';
 import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router'
 import {BASE_API_URL} from '../lib/util'
 import axios from 'axios';
 
@@ -12,12 +13,13 @@ class Login extends Component{
             email:'',
             password:'',
             message:'',
-            error: false
+            error: false,
+            redirect: false
         }
         
     }
 
-    onLogin = (e)=>{
+    onLogin = (e) => {
         e.preventDefault();
 
         
@@ -36,8 +38,12 @@ class Login extends Component{
                 .then(res=>{
                     console.log(res)
                     if(res.status === 200 ){
-                        this.setState({message:'Login success!!'})
+                        this.setState({ 
+                            message:'Login success!!',
+                            redirect: true
+                        })
                         localStorage.setItem('token', res.data.id)
+
                         
                     }else if(res.status === 401)
                     this.setState({ message: 'email dan password anda salah' })
@@ -50,7 +56,13 @@ class Login extends Component{
     }
 
     render(){
+        if (this.state.redirect) {
+            return <Redirect to='/'/>;
+        }
+
         return(
+            <div>
+                <br/><br/>
                 <div className="card Login">
                     <div className="card-block">
                         <form onSubmit={this.onLogin}>
@@ -74,8 +86,7 @@ class Login extends Component{
                         </form>
                     </div>
                 </div>
-
-         
+            </div>
         );
     }
 }

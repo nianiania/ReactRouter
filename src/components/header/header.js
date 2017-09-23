@@ -4,13 +4,19 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios'
+import { Redirect } from 'react-router'
 import { BASE_API_URL } from '../lib/util'
 
 
 class Header extends Component{
-    state = {
-        tokenState: null
+    constructor(props) {
+        super(props)
+
+        this.state = {
+            tokenState: null,
+        }
     }
+    
 
     componentDidMount(){
         this.getToken()
@@ -27,15 +33,17 @@ class Header extends Component{
 
     logoutHandler = () => {
         console.log('logout')
-        // axios.post(BASE_API_URL + '/Users/logout?access_token=' + this.state.tokenState)
-        //     .then(result => {
-        //         console.log(result)
-        //         localStorage.clear()
-        //     })
-        //     .catch(err => {
-        //         console.log(err)
-        //     })
-
+        axios.post(BASE_API_URL + '/Users/logout?access_token=' + this.state.tokenState)
+            .then(result => {
+                console.log(result)
+                localStorage.clear()
+                this.setState({
+                    tokenState: null
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
 

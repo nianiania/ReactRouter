@@ -8,7 +8,7 @@ import {
 
 
 // Components
-import Header from '../components/header/header';
+// import Header from '../components/header/header';
 import Login from '../components/login/login';
 import Payment from '../components/payment/payment';
 import Product from '../components/product/product';
@@ -26,14 +26,14 @@ class App extends Component {
     return (
       <Router>
         <div className="App">
-          <Header className="App-main" />
+          {/* <Header className="App-main" /> */}
           <Route exact path='/' component={Product} />
-          <Route exact path='/Login' component={Login} />
-          <Route exact path='/Signup' component={Signup} />
           <Route exact path='/pdp' component={Pdp} />
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/payment' component={Payment} />
           <Route exact path='/paymentsuccess' component={Ps} />
+          <Route exact path='/Login' component={Login} />
+          <Route exact path='/Signup' component={Signup} />
         </div>
       </Router>
     );
