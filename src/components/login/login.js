@@ -82,7 +82,7 @@ class Login extends Component{
                             <br/>
                             <button type="submit" className="btn btn-primary"> Login </button>
                             <br/>
-                            <a href="#">Sign Up! </a>      
+                            <Link to="/Signup"> SignUp </Link>
                         </form>
                     </div>
                 </div>
