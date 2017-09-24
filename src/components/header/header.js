@@ -59,7 +59,7 @@ class Header extends Component{
                         </li>
                         {this.state.tokenState && 
                         <li>
-                            <Link to="/cart"> Cart </Link>
+                            <Link to="/cart" > Cart </Link>
                         </li>}
                         {!this.state.tokenState &&
                         <li>
