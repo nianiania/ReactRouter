@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import './login.css';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router'
-import {BASE_API_URL} from '../lib/util'
+import { BASE_API_URL } from '../lib/util'
 import axios from 'axios';
 
 

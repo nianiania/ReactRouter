@@ -15,20 +15,26 @@ class Product extends Component{
 
         this.state={
             data_product_api:[],
+            dataToken: null
         }
- 
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getProduct()
+        // this.getToken()
     }
 
-    getProduct = async () =>{
+    // getToken = async () => {
+    //     const token = await localStorage.getItem('token')
+    //     this.setState({ dataToken: token })
+    // }
+
+    getProduct = async () => {
         try{
             let response = await axios.get(BASE_API_URL +'/shoppinglists')
             let responseJson = await response;
             console.log(responseJson)
-            this.setState({data_product_api:response.data})
+            this.setState({ data_product_api: response.data })
         } catch(error){
             console.error(error);
         }
@@ -36,12 +42,22 @@ class Product extends Component{
 
     render(){
         if(this.state.data_product_api.length>0){
-            return <Product_thumbnail data={this.state.data_product_api}/>
+            return <Product_thumbnail data={this.state.data_product_api} token={this.state.dataToken} />
         }
         return <div>Loading...</div>
     }     
 }            
 
+
+
+
+// const addToCart = () => {
+//     // console.log('hsjdshf')
+//     getToken()
+// }
+
+
+// Product_thumbnail(data, token)
 
 
 
@@ -56,12 +72,13 @@ const Product_thumbnail = (props) => {
                             <h4 className="card-title">{res.product_name}</h4>
                             <p className="card-text">Rp {res.price}</p>
                         </Link>
-                        <a href="#" className="btn btn-primary">Add to Cart </a>
+                        {/* {props.token &&
+                            <button className="btn-primary" onClick={() => console.log('aklasjdlkasd')}> Add to Cart </button>
+                        } */}
                         <br/><br/> 
                     </div>
                 </div>
             </div>
-
         )
     })
         
