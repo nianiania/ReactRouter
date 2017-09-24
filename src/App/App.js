@@ -28,7 +28,7 @@ class App extends Component {
         <div className="App">
           {/* <Header className="App-main" /> */}
           <Route exact path='/' component={Product} />
-          <Route exact path='/pdp' component={Pdp} />
+          <Route exact path='/pdp/:id' component={Pdp} />
           <Route exact path='/cart' component={Cart} />
           <Route exact path='/payment' component={Payment} />
           <Route exact path='/paymentsuccess' component={Ps} />

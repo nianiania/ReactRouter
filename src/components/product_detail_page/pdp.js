@@ -4,8 +4,8 @@ import {
   Link
 } from 'react-router-dom';
 import axios from 'axios';
-import {BASE_API_URL} from '../lib/util';
-
+import { BASE_API_URL } from '../lib/util';
+import Header from '../header/header';
 
 
 
@@ -15,21 +15,23 @@ class Pdp extends Component{
         super(props)
 
         this.state={
-            product_detail_api:{}
+            product_detail_api: {}
         }
     }
 
     componentWillMount(){
+        console.log(this.props)
+        console.log(this.props.match.params.id)
         this.getProduct()
     }
 
     getProduct =async () =>{
         try{
-            let response = await axios.get(BASE_API_URL +'/productdetails?filter[where][product_id]=253462')
+            let response = await axios.get(BASE_API_URL + '/productdetails?filter[where][product_id]=253462')
             let responseJson = await response;
             console.log(responseJson.data)
             console.log(responseJson.data[0])
-            this.setState({product_detail_api:response.data[0]})
+            this.setState({ product_detail_api: response.data[0] })
         }catch(error){
             console.error(error);
         }
@@ -39,7 +41,7 @@ class Pdp extends Component{
         if(this.state.product_detail_api){
             return(
                 <div className="container">
-                    <Product_detail data={this.state.product_detail_api}/>
+                    <Product_detail data={this.state.product_detail_api} />
                 </div>
             )
         }
@@ -48,31 +50,32 @@ class Pdp extends Component{
 }
 
 
-const Product_detail =(props)=>{
-    console.log(props.data)
+const Product_detail = (props) => {
     return(
-        <div className="row">
-            <div className="col-sm-5">    
-                <img src={props.data.image} alt="Product" className="img-thumbnail"></img>
-            </div>
-            <div className="col-sm-7">
-                <div className="card pdp">
-                    <div className="card-block">
-                        <h4 className="card-title">{props.data.product_name}</h4>
-                        <p className="card-text">Price: Rp {props.data.price}</p>
-                        <p>{props.data.description} </p>
-                                             
-                        <Link to="/payment">
-                            <button type="submit" className="btn btn-primary float-right" >Buy</button>
-                        </Link>
-                        <Link to="/">
-                        <button type="submit" className="btn btn-primary float-left" >Add to cart</button>
-                        </Link>
+        <div>
+            <Header className="App-main" />
+            <div className="row">
+                <div className="col-sm-5">    
+                    <img src={props.data.image} alt="Product" className="img-thumbnail"></img>
+                </div>
+                <div className="col-sm-7">
+                    <div className="card pdp">
+                        <div className="card-block">
+                            <h4 className="card-title">{props.data.product_name}</h4>
+                            <p className="card-text">Price: Rp {props.data.price}</p>
+                            <p>{props.data.description} </p>
+                                                
+                            <Link to="/payment">
+                                <button type="submit" className="btn btn-primary float-right" >Buy</button>
+                            </Link>
+                            <Link to="/">
+                            <button type="submit" className="btn btn-primary float-left" >Add to cart</button>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    
     )
 }
 

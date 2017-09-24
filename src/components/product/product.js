@@ -31,7 +31,6 @@ class Product extends Component{
             this.setState({data_product_api:response.data})
         } catch(error){
             console.error(error);
-
         }
     }
 
@@ -40,10 +39,7 @@ class Product extends Component{
             return <Product_thumbnail data={this.state.data_product_api}/>
         }
         return <div>Loading...</div>
-
-    }  
- 
-    
+    }     
 }            
 
 
@@ -56,9 +52,9 @@ const Product_thumbnail = (props) => {
                 <div className="card product">
                     <img className="card-img-top" src={res.image} alt="Product" ></img>
                     <div className="card-block">
-                        <Link to="/pdp">
-                        <h4 className="card-title">{res.product_name}</h4>
-                        <p className="card-text">Rp {res.price}</p>
+                        <Link to={"/pdp/" + res.product_id }>
+                            <h4 className="card-title">{res.product_name}</h4>
+                            <p className="card-text">Rp {res.price}</p>
                         </Link>
                         <a href="#" className="btn btn-primary">Add to Cart </a>
                         <br/><br/> 
