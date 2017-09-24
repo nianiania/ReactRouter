@@ -14,7 +14,7 @@ class Pdp extends Component{
     constructor(props){
         super(props)
 
-        this.state={
+        this.state = {
             product_detail_api: {}
         }
     }
@@ -27,7 +27,7 @@ class Pdp extends Component{
 
     getProduct =async () =>{
         try{
-            let response = await axios.get(BASE_API_URL + '/productdetails?filter[where][product_id]=253462')
+            let response = await axios.get(BASE_API_URL + '/productdetails?filter[where][product_id]=' + this.props.match.params.id)
             let responseJson = await response;
             console.log(responseJson.data)
             console.log(responseJson.data[0])
